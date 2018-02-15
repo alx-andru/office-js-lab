@@ -20,6 +20,7 @@ export class AppComponent {
   addEventHandler() {
     console.log('try adding');
     const onSelectionChanged = this.onSelectionChanged;
+    const eventHandler = this.addEventHandler;
     this.tryCatch(() =>
       Excel.run(async context => {
         const workbook = context.workbook;
@@ -46,7 +47,8 @@ export class AppComponent {
         if (error instanceof OfficeExtension.Error) {
           console.log('Debug info: ' + JSON.stringify(error.debugInfo));
         }
-        this.addEventHandler();
+        console.log('call addEventHandler again');
+        eventHandler();
       })
     );
   }

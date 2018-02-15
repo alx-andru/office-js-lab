@@ -103,6 +103,7 @@ var AppComponent = (function () {
         var _this = this;
         console.log('try adding');
         var onSelectionChanged = this.onSelectionChanged;
+        var eventHandler = this.addEventHandler;
         this.tryCatch(function () {
             return Excel.run(function (context) { return __awaiter(_this, void 0, void 0, function () {
                 var _this = this;
@@ -140,7 +141,8 @@ var AppComponent = (function () {
                 if (error instanceof OfficeExtension.Error) {
                     console.log('Debug info: ' + JSON.stringify(error.debugInfo));
                 }
-                this.addEventHandler();
+                console.log('call addEventHandler again');
+                eventHandler();
             });
         });
     };
