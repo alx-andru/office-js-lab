@@ -264,6 +264,8 @@ var AppComponent = (function () {
                     case 2:
                         error_1 = _a.sent();
                         console.log(error_1);
+                        // OfficeHelpers.Utilities.log(error);
+                        this.addEventHandler();
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
