@@ -135,7 +135,12 @@ var AppComponent = (function () {
                             return [2 /*return*/];
                     }
                 });
-            }); });
+            }); }).catch(function (error) {
+                console.log('Error1: ' + error);
+                if (error instanceof OfficeExtension.Error) {
+                    console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+                }
+            });
         });
     };
     AppComponent.prototype.removeLastEventHandler = function () {
@@ -161,7 +166,12 @@ var AppComponent = (function () {
                                     return [2 /*return*/];
                             }
                         });
-                    }); });
+                    }); }).catch(function (error) {
+                        console.log('Error2: ' + error);
+                        if (error instanceof OfficeExtension.Error) {
+                            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+                        }
+                    });
                 });
                 return [2 /*return*/];
             });
@@ -198,7 +208,12 @@ var AppComponent = (function () {
                                                                     return [2 /*return*/];
                                                             }
                                                         });
-                                                    }); })];
+                                                    }); }).catch(function (error) {
+                                                        console.log('Error3: ' + error);
+                                                        if (error instanceof OfficeExtension.Error) {
+                                                            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+                                                        }
+                                                    })];
                                             case 1:
                                                 _a.sent();
                                                 return [2 /*return*/];

@@ -41,6 +41,11 @@ export class AppComponent {
           'Event handler added',
           'Try changing the selection, and watch the console output.'
         );
+      }).catch(function(error) {
+        console.log('Error1: ' + error);
+        if (error instanceof OfficeExtension.Error) {
+          console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+        }
       })
     );
   }
@@ -57,6 +62,11 @@ export class AppComponent {
       Excel.run(workbook, async context => {
         lastEventHandler.handler.remove();
         await context.sync();
+      }).catch(function(error) {
+        console.log('Error2: ' + error);
+        if (error instanceof OfficeExtension.Error) {
+          console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+        }
       })
     );
   }
@@ -73,6 +83,11 @@ export class AppComponent {
         await Excel.run(lastEventHandler.workbook, async context => {
           lastEventHandler.handler.remove();
           await context.sync();
+        }).catch(function(error) {
+          console.log('Error3: ' + error);
+          if (error instanceof OfficeExtension.Error) {
+            console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+          }
         });
       }
 
