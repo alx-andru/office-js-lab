@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created:ce44715c-8c4e-446b-879c-ea9ebe0f09c8-->
+<OfficeApp
+          xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+          xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+          xsi:type="TaskPaneApp">
+
+  <!-- Begin Basic Settings: Add-in metadata, used for all versions of Office unless override provided. -->
+
+  <!-- IMPORTANT! Id must be unique for your add-in, if you reuse this manifest ensure that you change this id to a new GUID. -->
+  <Id>cb49f250-091a-4817-ae8a-718f075e7cc5</Id>
+
+  <!--Version. Updates from the store only get triggered if there is a version change. -->
+  <Version>1.0.0.0</Version>
+  <ProviderName>alx-andru</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
+  <DisplayName DefaultValue="alx-andru" />
+  <Description DefaultValue="Office-js test"/>
+  <!-- Icon for your add-in. Used on installation screens and the add-ins dialog. -->
+  <IconUrl DefaultValue="https://localhost:4200/assets/images/logo-small-32x32.png" />
+
+  <SupportUrl DefaultValue="https://localhost:4200" />
+  <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
+  <AppDomains>
+    <AppDomain>https://accounts.google.com</AppDomain>
+    <AppDomain>https://secure.aadcdn.microsoftonline-p.com</AppDomain>
+    <AppDomain>https://account.live.com</AppDomain>
+    <AppDomain>https://login.windows.net</AppDomain>
+    <AppDomain>https://login.live.com</AppDomain>
+    <AppDomain>https://login.microsoftonline.com</AppDomain>
+    <AppDomain>https://word.officeapps.live.com</AppDomain>
+    <AppDomain>https://localhost:44323</AppDomain>
+    <AppDomain>http://localhost:4200</AppDomain>
+    <AppDomain>https://angular-2gwutt.stackblitz.io</AppDomain>
+    <AppDomain>https://fonts.googleapis.com</AppDomain>
+    <AppDomain>https://office-js.azurewebsites.net</AppDomain>
+    <AppDomain>https://c.staticblitz.com</AppDomain>
+  </AppDomains>
+  <!--End Basic Settings. -->
+
+  <!--Begin TaskPane Mode integration. This section is used if there are no VersionOverrides or if the Office client version does not support add-in commands. -->
+  <Hosts>
+    <Host Name="Workbook" />
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://office-js.azurewebsites.net/" />
+  </DefaultSettings>
+  <!-- End TaskPane Mode integration.  -->
+
+  <Permissions>ReadWriteDocument</Permissions>
+
+  <!-- Begin Add-in Commands Mode integration. -->
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+
+    <!-- The Hosts node is required. -->
+    <Hosts>
+      <!-- Each host can have a different set of commands. -->
+      <!-- Excel host is Workbook, Word host is Document, and PowerPoint host is Presentation. -->
+      <!-- Make sure the hosts you override match the hosts declared in the top section of the manifest. -->
+      <Host xsi:type="Workbook">
+        <!-- Form factor. Currently only DesktopFormFactor is supported. -->
+        <DesktopFormFactor>
+          <!--"This code enables a customizable message to be displayed when the add-in is loaded successfully upon individual install."-->
+          <GetStarted>
+            <!-- Title of the Getting Started callout. The resid attribute points to a ShortString resource -->
+            <Title resid="ALX.GetStarted.Title"/>
+
+            <!-- Description of the Getting Started callout. resid points to a LongString resource -->
+            <Description resid="ALX.GetStarted.Description"/>
+
+            <!-- Points to a URL resource which details how the add-in should be used. -->
+            <LearnMoreUrl resid="ALX.GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+
+          <!-- PrimaryCommandSurface is the main Office Ribbon. -->
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <!-- Use OfficeTab to extend an existing Tab. Use CustomTab to create a new tab. -->
+            <OfficeTab id="TabHome">
+              <!-- Ensure you provide a unique id for the group. Recommendation for any IDs is to namespace using your company name. -->
+              <Group id="ALX.Group1">
+                <!-- Label for your group. resid must point to a ShortString resource. -->
+                <Label resid="ALX.Group1Label" />
+                <!-- Icons. Required sizes 16,32,80, optional 20, 24, 40, 48, 64. Strongly recommended to provide all sizes for great UX. -->
+                <!-- Use PNG icons. All URLs on the resources section must use HTTPS. -->
+                <Icon>
+                  <bt:Image size="16" resid="ALX.tpicon_16x16" />
+                  <bt:Image size="32" resid="ALX.tpicon_32x32" />
+                  <bt:Image size="80" resid="ALX.tpicon_80x80" />
+                </Icon>
+
+                <!-- Control. It can be of type "Button" or "Menu". -->
+                <Control xsi:type="Button" id="ALX.TaskpaneButton">
+                  <Label resid="ALX.TaskpaneButton.Label" />
+                  <Supertip>
+                    <!-- ToolTip title. resid must point to a ShortString resource. -->
+                    <Title resid="ALX.TaskpaneButton.Label" />
+                    <!-- ToolTip description. resid must point to a LongString resource. -->
+                    <Description resid="ALX.TaskpaneButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="ALX.tpicon_16x16" />
+                    <bt:Image size="32" resid="ALX.tpicon_32x32" />
+                    <bt:Image size="80" resid="ALX.tpicon_80x80" />
+                  </Icon>
+
+                  <!-- This is what happens when the command is triggered (E.g. click on the Ribbon). Supported actions are ExecuteFunction or ShowTaskpane. -->
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <!-- Provide a URL resource id for the location that will be displayed on the task pane. -->
+                    <SourceLocation resid="ALX.Taskpane.Url" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <!-- You can use resources across hosts and form factors. -->
+    <Resources>
+      <bt:Images>
+        <bt:Image id="ALX.tpicon_16x16" DefaultValue="https://localhost:44323/assets/images/logo-small-16x16.png" />
+        <bt:Image id="ALX.tpicon_32x32" DefaultValue="https://localhost:44323/assets/images/logo-small-32x32.png" />
+        <bt:Image id="ALX.tpicon_80x80" DefaultValue="https://localhost:44323/assets/images/logo-small-80x80.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="ALX.Taskpane.Url" DefaultValue="https://office-js.azurewebsites.net/" />
+        <bt:Url id="ALX.GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
+      </bt:Urls>
+      <!-- ShortStrings max characters==125. -->
+      <bt:ShortStrings>
+        <bt:String id="ALX.TaskpaneButton.Label" DefaultValue="ALX" />
+        <bt:String id="ALX.Group1Label" DefaultValue="ALX" />
+        <bt:String id="ALX.GetStarted.Title" DefaultValue="Thanks for installing ALX!" />
+      </bt:ShortStrings>
+      <!-- LongStrings max characters==250. -->
+      <bt:LongStrings>
+        <bt:String id="ALX.TaskpaneButton.Tooltip" DefaultValue="Click to open ALX app" />
+        <bt:String id="ALX.GetStarted.Description" DefaultValue="ALX add-in loaded succesfully. Go to the HOME tab and click the 'ALX' button to get started." />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+  <!-- End Add-in Commands Mode integration. -->
+
+</OfficeApp>
