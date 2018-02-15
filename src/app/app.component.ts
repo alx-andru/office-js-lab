@@ -101,6 +101,7 @@ export class AppComponent {
     } catch (error) {
       console.log(error);
       // OfficeHelpers.Utilities.log(error);
+      this.addEventHandler();
     }
   }
 }
