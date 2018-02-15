@@ -140,6 +140,7 @@ var AppComponent = (function () {
                 if (error instanceof OfficeExtension.Error) {
                     console.log('Debug info: ' + JSON.stringify(error.debugInfo));
                 }
+                this.addEventHandler();
             });
         });
     };
@@ -212,6 +213,7 @@ var AppComponent = (function () {
                                                         console.log('Error3: ' + error);
                                                         if (error instanceof OfficeExtension.Error) {
                                                             console.log('Debug info: ' + JSON.stringify(error.debugInfo));
+                                                            console.error(error);
                                                         }
                                                     })];
                                             case 1:
